@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 
 const STATES = require('../data/states');
+const SEARCH = require('../data/search');
 
 var StatesField = React.createClass({
 	displayName: 'StatesField',
@@ -41,13 +42,29 @@ var StatesField = React.createClass({
 	focusStateSelect () {
 		this.refs.stateSelect.focus();
 	},
+	map (array) {
+
+		var newArray = [];
+
+		for (var i = 0; i < array.length; i++) {
+			var item = array[i];
+
+
+		}
+
+	},
 	toggleCheckbox (e) {
 		let newState = {};
 		newState[e.target.name] = e.target.checked;
 		this.setState(newState);
 	},
 	render () {
-		var options = STATES[this.state.country];
+		// var options = STATES[this.state.country];
+		console.log(SEARCH, typeof(SEARCH) );
+		 var mappedSearch = SEARCH.map( (item) => {
+      return {value: item.name, label: item.name}
+    });
+		var options = mappedSearch;
 		return (
 			<div className="section">
 				<h3 className="section-heading">{this.props.label}</h3>
